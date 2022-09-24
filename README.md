@@ -1,4 +1,4 @@
-# Scorpio zadanie-rekrutacyjne
+# Scorpio-zadanie-rekrutacyjne
 
 ## Etap 1
 Program napisałem w pythonie przy wykorzystaniu biblioteki psutil. Nie zrobiłem jedynie odczytu temperatury każdego rdzenia, gdyż korzystajac z virtual machine nie jestem w stanie ich odczytać.
