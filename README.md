@@ -14,7 +14,7 @@ I dodałem taka linie
 ```
 @reboot python /bin/main.py &
 ```
-Nastepnie po każdym ponownym włączeniu systemu, plik system_data_readings.txt jest aktualizowany.
+Nastepnie po każdym ponownym włączeniu systemu, plik system_data_readings.txt jest aktualizowany co około 5s.
 
 
 ## Etap 3
