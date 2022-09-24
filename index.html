@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+
+    <table id="cpu">
+    </table>
+
+
+    <table>
+        <tr>
+            <th colspan="3">RAM</th>
+        </tr>
+        <tr>
+            <th>total</th>
+            <th>used</th>
+            <th>available</th>
+        </tr>
+        <tr id="ram">
+
+        </tr>
+        <tr></tr>
+    </table>
+
+    <table>
+        <tr>
+            <th colspan="1">Disk</th>
+        </tr>
+        <tr>
+            <th>used</th>
+        </tr>
+        <tr id="disk">
+
+        </tr>
+    </table>
+
+    <table id="inf">
+    </table>
+</div>
+<script>
+
+
+    function getData() {
+        fetch('system_data_readings.txt')
+            .then(response => response.json())
+            .then(data => {
+                //CPU
+                let cpu = document.getElementById("cpu")
+                cpu.innerHTML = `<tr><th colspan="5">CPU</th></tr>
+                                 <tr id="core"></tr>
+                                 <tr id="load"><th>load</th></tr>
+                                 <tr id="temp"><th>temp</th></tr>`
+                let core = document.getElementById("core")
+                core.innerHTML = '<th></th>'
+                let load = document.getElementById("load")
+                let temp = document.getElementById("temp")
+                //RAM
+                let ram = document.getElementById("ram")
+                ram.innerHTML = ''
+                //Disk
+                let disk = document.getElementById("disk")
+                disk.innerHTML = ''
+                //Network
+                let inf = document.getElementById("inf")
+                inf.innerHTML = `<tr><th colspan="5">Network Interface</th></tr>
+                                 <tr><th>Interface</th>
+                                 <th>IP</th>
+                                 <th>Status</th>
+                                 <th>In</th>
+                                 <th>Out</th></tr>`
+
+                for (const [key, value] of Object.entries(data)) {
+                    for (const [key2, value2] of Object.entries(value)) {
+                        if (key === "CPU") {
+                            let header = `<th>${key2}</th>`
+                            core.innerHTML += header
+                            let i = 0
+                            for (const [key3, value3] of Object.entries(value2)) {
+                                i++
+                                let row = `<td>${value3}</td>`
+                                if (i % 2)
+                                    load.innerHTML += row
+                                else
+                                    temp.innerHTML += row
+                            }
+                        }
+                        if (key === "RAM") {
+                            let td = `<td>${value2}</td>`
+                            ram.innerHTML += td
+                        }
+                        if (key === "Disk") {
+                            let td = `<td>${value2}</td>`
+                            disk.innerHTML += td
+                        }
+                        if (key === "Network Interface") {
+                            //  console.log(value2)
+                            let row = `<tr id="${key2}"><td>${key2}</tr>`
+                            inf.innerHTML += row
+                            for (const [key3, value3] of Object.entries(value2)) {
+                                let net = document.getElementById(key2)
+                                let td = `<td>${value3}</td>`
+                                net.innerHTML += td
+                            }
+                        }
+                    }
+
+                }
+            });
+    }
+
+    setInterval(getData, 1000)
+    getData()
+
+
+</script>
+</body>
+</html>
