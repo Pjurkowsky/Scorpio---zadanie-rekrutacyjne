@@ -7,8 +7,11 @@ Program napisałem w pythonie przy wykorzystaniu biblioteki psutil. Nie zrobiłe
 ## Etap 2
 Aby program wykonywał się na starcie systemu wykorzystałem crontaba.
 ```
-sudo cp -i /home/pjury/Desktop/scorpio/main.py /bin
+sudo cp -i /home/pjury/Desktop/Scorpio-zadanie-rekrutacyjne/main.py /bin
 sudo crontab -e
+```
+I dodałem taka linie
+```
 @reboot python /bin/main.py &
 ```
 Nastepnie po każdym ponownym włączeniu systemu, plik system_data_readings.txt jest aktualizowany.
