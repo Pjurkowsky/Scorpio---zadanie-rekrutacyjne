@@ -19,4 +19,4 @@ Nastepnie po każdym ponownym włączeniu systemu, plik system_data_readings.txt
 
 ## Etap 3
 Wykorztując fetch API pobieram dane z pliku, a następnie z odrobiną JS'a uzupełniam tabele danymi. Aby móc korzystać z fetcha potrzebowałem serwera. Wykorzystałem do tego  prosty serwer pythonowy ```python3 -m http.server 8000 --bind 127.0.0.1```. Wygląda to następująco:
-![image](https://user-images.githubusercontent.com/77162184/192109430-8b7f01bc-a299-445b-8a14-ac634776adc1.png)
+![image](https://user-images.githubusercontent.com/77162184/193583898-cc78492c-3dc6-4b85-87d5-756911d7e9fc.png)
