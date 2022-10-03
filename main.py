@@ -15,7 +15,9 @@ data = {
         "available": 0
     },
     "Disk": {
-        "used": 0
+        "total": 0,
+        "used": 0,
+        "available": 0
     },
     "Network Interface": {
         # "essa": {
@@ -36,10 +38,12 @@ def read_data():
         # print(psutil.sensors_temperatures())
 
     data["RAM"]["total"] = round(psutil.virtual_memory().total / 1024 / 1024, 3)
-    data["RAM"]["used"] = psutil.virtual_memory().percent
+    data["RAM"]["used"] = round(psutil.virtual_memory().used / 1024 / 1024, 3)
     data["RAM"]["available"] = round(psutil.virtual_memory().available / 1024 / 1024, 3)
 
-    data["Disk"]["used"] = psutil.disk_usage('/').percent
+    data["Disk"]["total"] = round(psutil.disk_usage('/').total / 1024 / 1024, 3)
+    data["Disk"]["used"] = round(psutil.disk_usage('/').used  / 1024 / 1024, 3)
+    data["Disk"]["available"] = round(psutil.disk_usage('/').free / 1024 / 1024, 3)
 
     for inf in psutil.net_if_addrs().items():
         net_in, net_out = net_usage(inf[0])
